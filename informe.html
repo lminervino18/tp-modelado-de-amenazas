@@ -18,17 +18,42 @@
       margin: 0 auto;
     }
 
-    /* ── Cover ── */
-    .cover {
+    /* ── Portada ── */
+    .portada {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 96vh;
       text-align: center;
-      padding: 14px 0 10px;
-      border-bottom: 3px solid #2c5282;
-      margin-bottom: 12px;
+      page-break-after: always;
     }
-    .cover .institution { font-size: 9.5pt; color: #555; letter-spacing: 0.3px; }
-    .cover .course      { font-size: 10pt; font-weight: bold; color: #2c5282; margin: 3px 0; }
-    .cover h1           { font-size: 15pt; font-weight: bold; color: #1a1a1a; margin: 4px 0 2px; }
-    .cover .systems     { font-size: 9pt; color: #444; }
+    .portada .logo-bar {
+      width: 60px;
+      height: 6px;
+      background: #2c5282;
+      border-radius: 3px;
+      margin-bottom: 32px;
+    }
+    .portada .institution { font-size: 11pt; color: #555; letter-spacing: 0.4px; margin-bottom: 4px; }
+    .portada .faculty     { font-size: 11pt; color: #555; margin-bottom: 28px; }
+    .portada .course      { font-size: 11pt; font-weight: bold; color: #2c5282; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+    .portada h1           { font-size: 22pt; font-weight: bold; color: #1a1a1a; line-height: 1.25; margin-bottom: 8px; }
+    .portada .systems     { font-size: 10pt; color: #666; margin-bottom: 48px; }
+    .portada .divider     { width: 80px; height: 3px; background: #2c5282; border-radius: 2px; margin-bottom: 48px; }
+    .portada .members-title { font-size: 9pt; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+    .portada table {
+      font-size: 9.5pt;
+      border-collapse: collapse;
+      width: auto;
+      min-width: 480px;
+      text-align: left;
+    }
+    .portada table thead tr { background-color: #2c5282; color: #fff; }
+    .portada table thead th { padding: 7px 16px; font-weight: bold; }
+    .portada table tbody tr:nth-child(even) { background-color: #f0f4f8; }
+    .portada table tbody td { padding: 6px 16px; border-bottom: 1px solid #d1d9e0; }
+    .portada .year { font-size: 9pt; color: #aaa; margin-top: 40px; }
 
     /* ── Títulos ── */
     h2 {
@@ -122,12 +147,31 @@
 </head>
 <body>
 
-<!-- ══════════════════ COVER ══════════════════ -->
-<div class="cover">
-  <div class="institution">Universidad de Buenos Aires — Facultad de Ingeniería</div>
-  <div class="course">TP — Modelado de Amenazas</div>
-  <h1>Análisis de Seguridad: SIU-Guaraní y Campus Virtual</h1>
+<!-- ══════════════════ PORTADA ══════════════════ -->
+<div class="portada">
+  <div class="logo-bar"></div>
+  <div class="institution">Universidad de Buenos Aires</div>
+  <div class="faculty">Facultad de Ingeniería</div>
+  <div class="course">Trabajo Práctico — Modelado de Amenazas</div>
+  <h1>Análisis de Seguridad:<br>SIU-Guaraní y Campus Virtual</h1>
   <div class="systems">Sistemas académicos de FIUBA · 2026</div>
+  <div class="divider"></div>
+  <div class="members-title">Integrantes del grupo</div>
+  <table>
+    <thead>
+      <tr><th>Nombre y Apellido</th><th>Padrón</th><th>Email</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Sebastián Kraglievich</td><td>109038</td><td>skraglievich@fi.uba.ar</td></tr>
+      <tr><td>Lorenzo Minervino</td><td>107863</td><td>lminervino@fi.uba.ar</td></tr>
+      <tr><td>Martín Reimundo</td><td>106716</td><td>mreimundo@fi.uba.ar</td></tr>
+      <tr><td>Mateo Riat Sapulia</td><td>106031</td><td>mriat@fi.uba.ar</td></tr>
+      <tr><td>Fernando Yu</td><td>109007</td><td>fyu@fi.uba.ar</td></tr>
+      <tr><td>Tomás Corzo</td><td>110130</td><td>tcorzo@fi.uba.ar</td></tr>
+      <tr><td>Lisandro Román</td><td>107274</td><td>lroman@fi.uba.ar</td></tr>
+    </tbody>
+  </table>
+  <div class="year">2026</div>
 </div>
 
 <!-- ══════════════════════════════════════════════════════ -->
