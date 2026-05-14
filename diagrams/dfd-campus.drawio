@@ -1,0 +1,81 @@
+<mxfile host="Electron">
+  <diagram id="AmUY56AW33YDohV4CcBs" name="Página-1">
+    <mxGraphModel dx="1645" dy="784" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="tb1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#FF0000;strokeWidth=2;fillColor=none;fontSize=11;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;" value="Frontera: Internet / DMZ" vertex="1">
+          <mxGeometry height="530" width="890" x="10" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="tb2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#0050EF;strokeWidth=2;fillColor=none;fontSize=11;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;" value="Frontera: Red Interna" vertex="1">
+          <mxGeometry height="140" width="890" x="10" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="leg0" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=11;" value="Leyenda" vertex="1">
+          <mxGeometry height="30" width="220" x="930" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Entidad Externa" vertex="1">
+          <mxGeometry height="30" width="130" x="930" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="Proceso" vertex="1">
+          <mxGeometry height="30" width="130" x="930" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3" parent="1" style="shape=mxgraph.dfd.dataStore;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Almacén de Datos" vertex="1">
+          <mxGeometry height="30" width="130" x="930" y="138" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="Sistema Externo" vertex="1">
+          <mxGeometry height="30" width="130" x="930" y="182" as="geometry" />
+        </mxCell>
+        <mxCell id="ee1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;b&gt;Alumno / Docente&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="150" x="50" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ee2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;b&gt;IdEx / Araí IdP&lt;/b&gt;&lt;br&gt;(SAML / OAuth)" vertex="1">
+          <mxGeometry height="60" width="160" x="650" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="Apache / Nginx" vertex="1">
+          <mxGeometry height="60" width="160" x="340" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="Aplicación Moodle" vertex="1">
+          <mxGeometry height="60" width="160" x="340" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="p3" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="Cron Moodle" vertex="1">
+          <mxGeometry height="60" width="160" x="650" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="se1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" value="&lt;b&gt;SIU-Guaraní&lt;/b&gt;&lt;br&gt;(inscripciones)" vertex="1">
+          <mxGeometry height="60" width="160" x="650" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="ds1" parent="1" style="shape=mxgraph.dfd.dataStore;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" value="moodledata&lt;br&gt;(entregas, materiales)" vertex="1">
+          <mxGeometry height="55" width="200" x="100" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="ds2" parent="1" style="shape=mxgraph.dfd.dataStore;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" value="PostgreSQL / MySQL" vertex="1">
+          <mxGeometry height="55" width="200" x="340" y="608" as="geometry" />
+        </mxCell>
+        <mxCell id="f1" edge="1" parent="1" source="ee1" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;fontStyle=1;" target="p1" value="HTTPS">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" edge="1" parent="1" source="ee2" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;fontStyle=1;" target="p1" value="SAML / OAuth">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3" edge="1" parent="1" source="p1" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;fontStyle=1;" target="p2" value="PHP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f4" edge="1" parent="1" source="p2" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;fontStyle=1;" target="ds1" value="Archivos">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f5" edge="1" parent="1" source="p2" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;fontStyle=1;" target="ds2" value="SQL">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="490" />
+              <mxPoint x="420" y="490" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f6" edge="1" parent="1" source="se1" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;fontStyle=1;" target="p2" value="Inscripciones">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f7" edge="1" parent="1" source="p3" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;fontStyle=1;" target="p2" value="Jobs periódicos">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

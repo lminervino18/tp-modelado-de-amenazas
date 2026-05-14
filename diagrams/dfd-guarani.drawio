@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- FRONTERAS DE CONFIANZA (Trust Boundaries) -->
+    <!-- ══════════════════════════════════════════ -->
+
+    <mxCell id="tb1" value="Frontera: Internet / DMZ" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#FF0000;strokeWidth=2;fillColor=none;fontSize=11;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;" vertex="1" parent="1">
+      <mxGeometry x="10" y="10" width="890" height="530" as="geometry" />
+    </mxCell>
+
+    <mxCell id="tb2" value="Frontera: Red Interna" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#0050EF;strokeWidth=2;fillColor=none;fontSize=11;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;" vertex="1" parent="1">
+      <mxGeometry x="10" y="570" width="360" height="140" as="geometry" />
+    </mxCell>
+
+    <mxCell id="tb3" value="Frontera: Sistemas Externos" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#FF8000;strokeWidth=2;fillColor=none;fontSize=11;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;" vertex="1" parent="1">
+      <mxGeometry x="930" y="180" width="220" height="380" as="geometry" />
+    </mxCell>
+
+    <!-- ═══════════════════════════ -->
+    <!-- LEYENDA                    -->
+    <!-- ═══════════════════════════ -->
+
+    <mxCell id="leg0" value="Leyenda" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="930" y="10" width="220" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="leg1" value="Entidad Externa" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="930" y="50" width="130" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="leg2" value="Proceso" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="930" y="95" width="130" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="leg3" value="Almacén de Datos" style="shape=mxgraph.dfd.dataStore;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="930" y="138" width="130" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- ═══════════════════════════ -->
+    <!-- ENTIDADES EXTERNAS          -->
+    <!-- ═══════════════════════════ -->
+
+    <mxCell id="ee1" value="&lt;b&gt;Alumno / Docente&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="50" y="70" width="150" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="ee2" value="&lt;b&gt;Araí IdP&lt;/b&gt;&lt;br&gt;(SSO / SAML)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="650" y="70" width="150" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- ═══════════════════════════ -->
+    <!-- PROCESOS (elipses)         -->
+    <!-- ═══════════════════════════ -->
+
+    <mxCell id="p1" value="Apache&lt;br&gt;Web Server" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="340" y="70" width="160" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="p2" value="App Guaraní&lt;br&gt;3w / Gestión" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="340" y="230" width="160" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="p3" value="Jasper Reports" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="110" y="390" width="150" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="p4" value="API REST&lt;br&gt;Guaraní" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="590" y="390" width="150" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- ═══════════════════════════ -->
+    <!-- ALMACENES DE DATOS         -->
+    <!-- ═══════════════════════════ -->
+
+    <mxCell id="ds1" value="PostgreSQL DB" style="shape=mxgraph.dfd.dataStore;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="80" y="608" width="190" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- ═══════════════════════════════ -->
+    <!-- SISTEMAS EXTERNOS (tb3)        -->
+    <!-- ═══════════════════════════════ -->
+
+    <mxCell id="se1" value="Moodle" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="945" y="215" width="190" height="45" as="geometry" />
+    </mxCell>
+
+    <mxCell id="se2" value="Renaper" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="945" y="285" width="190" height="45" as="geometry" />
+    </mxCell>
+
+    <mxCell id="se3" value="SICer" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="945" y="355" width="190" height="45" as="geometry" />
+    </mxCell>
+
+    <mxCell id="se4" value="BIOMA" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="945" y="425" width="190" height="45" as="geometry" />
+    </mxCell>
+
+    <!-- ═══════════════════════════ -->
+    <!-- FLUJOS DE DATOS (flechas)  -->
+    <!-- ═══════════════════════════ -->
+
+    <mxCell id="f1" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;fontStyle=1;" edge="1" source="ee1" target="p1" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <mxCell id="f2" value="SAML / SSO" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;fontStyle=1;" edge="1" source="ee2" target="p1" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <mxCell id="f3" value="PHP interno" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;fontStyle=1;" edge="1" source="p1" target="p2" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <mxCell id="f4" value="Java Bridge" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;fontStyle=1;" edge="1" source="p2" target="p3" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <mxCell id="f5" value="REST API" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;fontStyle=1;" edge="1" source="p2" target="p4" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <mxCell id="f6" value="SQL" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;fontStyle=1;" edge="1" source="p2" target="ds1" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <mxCell id="f7" value="REST API" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;fontStyle=1;" edge="1" source="se1" target="p4" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <mxCell id="f8" value="REST API" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;fontStyle=1;" edge="1" source="se2" target="p4" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <mxCell id="f9" value="REST API" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;fontStyle=1;" edge="1" source="se3" target="p4" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <mxCell id="f10" value="REST API" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=11;fontStyle=1;" edge="1" source="se4" target="p4" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+  </root>
+</mxGraphModel>

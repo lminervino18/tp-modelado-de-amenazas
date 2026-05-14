@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>TP — Modelado de Amenazas — FIUBA</title>
+  <style>
+    @page { margin: 1.4cm 1.6cm; size: A4; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Georgia", serif;
+      font-size: 9.5pt;
+      line-height: 1.46;
+      color: #1a1a1a;
+      background: #fff;
+      padding: 1.4cm 1.6cm;
+      max-width: 21cm;
+      margin: 0 auto;
+    }
+
+    /* ── Cover ── */
+    .cover {
+      text-align: center;
+      padding: 14px 0 10px;
+      border-bottom: 3px solid #2c5282;
+      margin-bottom: 12px;
+    }
+    .cover .institution { font-size: 9.5pt; color: #555; letter-spacing: 0.3px; }
+    .cover .course      { font-size: 10pt; font-weight: bold; color: #2c5282; margin: 3px 0; }
+    .cover h1           { font-size: 15pt; font-weight: bold; color: #1a1a1a; margin: 4px 0 2px; }
+    .cover .systems     { font-size: 9pt; color: #444; }
+
+    /* ── Títulos ── */
+    h2 {
+      font-size: 10.5pt; font-weight: bold;
+      margin: 10px 0 5px;
+      padding-bottom: 2px;
+      border-bottom: 2px solid #2c5282;
+      color: #2c5282;
+      page-break-after: avoid;
+    }
+    h3 {
+      font-size: 9.5pt; font-weight: bold;
+      margin: 7px 0 4px;
+      color: #2d3748;
+      page-break-after: avoid;
+    }
+    p { margin-bottom: 5px; }
+
+    /* ── Tablas ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 4px 0 10px;
+      font-size: 8pt;
+      page-break-inside: avoid;
+    }
+    thead tr { background-color: #2c5282; color: #fff; }
+    thead th { padding: 4px 7px; text-align: left; font-weight: bold; white-space: nowrap; }
+    tbody tr:nth-child(even) { background-color: #f0f4f8; }
+    tbody td { padding: 4px 7px; border-bottom: 1px solid #d1d9e0; vertical-align: top; }
+
+    /* STRIDE — muy compactas */
+    .stride-table { font-size: 7.3pt; }
+    .stride-table thead th { padding: 4px 4px; }
+    .stride-table tbody td { padding: 3px 4px; }
+    .stride-table tbody td:first-child { font-weight: bold; white-space: nowrap; }
+
+    /* CIA */
+    .ca { color: #c53030; font-weight: bold; text-align: center; }
+    .cm { color: #c05621; font-weight: bold; text-align: center; }
+    .cb { color: #276749; font-weight: bold; text-align: center; }
+    thead th.cia { text-align: center; }
+
+    /* ── Amenazas ── */
+    .amenazas-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin: 4px 0 8px;
+    }
+    .amenaza-block {
+      border-left: 3px solid #2c5282;
+      padding: 5px 8px;
+      background: #f7faff;
+      page-break-inside: avoid;
+      font-size: 8pt;
+    }
+    .amenaza-block h3 { font-size: 8.5pt; margin: 0 0 3px; }
+    .amenaza-block p  { margin-bottom: 2px; }
+
+    /* ── DREAD ── */
+    .dread-result {
+      display: inline-block;
+      background: #c53030; color: #fff;
+      font-weight: bold;
+      padding: 2px 10px;
+      border-radius: 3px;
+      font-size: 9pt;
+      margin: 4px 0 6px;
+    }
+    .dread-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .dread-block { page-break-inside: avoid; }
+
+    /* ── Placeholder DFD ── */
+    .img-placeholder {
+      border: 1.5px dashed #a0aec0;
+      border-radius: 4px;
+      padding: 10px;
+      text-align: center;
+      color: #718096;
+      font-size: 8.5pt;
+      margin: 4px 0 8px;
+      background: #f9fafb;
+    }
+
+    @media print {
+      body { padding: 0; }
+      .no-break { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════ COVER ══════════════════ -->
+<div class="cover">
+  <div class="institution">Universidad de Buenos Aires — Facultad de Ingeniería</div>
+  <div class="course">TP — Modelado de Amenazas</div>
+  <h1>Análisis de Seguridad: SIU-Guaraní y Campus Virtual</h1>
+  <div class="systems">Sistemas académicos de FIUBA · 2026</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>1. Identificación de Actores y Datos Sensibles</h2>
+
+<h3>Actores</h3>
+<table>
+  <thead><tr><th>Actor</th><th>Sistema</th><th>Descripción</th></tr></thead>
+  <tbody>
+    <tr><td><b>Alumno</b></td><td>Ambos</td><td>Accede a Guaraní para inscripciones y al Campus para materiales, entregas y exámenes</td></tr>
+    <tr><td><b>Docente</b></td><td>Ambos</td><td>Carga notas en Guaraní; sube materiales y califica en Campus</td></tr>
+    <tr><td><b>Bedel</b></td><td>Guaraní</td><td>Administra inscripciones, cursadas y trámites académicos</td></tr>
+    <tr><td><b>Administrador técnico</b></td><td>Ambos</td><td>Accede a servidores, bases de datos y configuraciones</td></tr>
+    <tr><td><b>Admin de Campus</b></td><td>Campus</td><td>Crea cursos, gestiona usuarios y configura plugins de Moodle</td></tr>
+    <tr><td><b>Araí IdP / IdEx</b></td><td>Ambos</td><td>Sistema de autenticación SSO institucional (SAML/OpenID Connect)</td></tr>
+    <tr><td><b>SIU-Guaraní</b></td><td>Campus</td><td>Proveedor externo de inscripciones para Moodle</td></tr>
+    <tr><td><b>Jasper Reports</b></td><td>Guaraní</td><td>Servicio interno de generación de reportes y certificados</td></tr>
+    <tr><td><b>Sistemas externos</b></td><td>Guaraní</td><td>Renaper (identidad), SICer (títulos), BIOMA (biblioteca), Moodle</td></tr>
+    <tr><td><b>Cron de Moodle</b></td><td>Campus</td><td>Proceso interno que ejecuta tareas periódicas sobre BD y archivos</td></tr>
+  </tbody>
+</table>
+
+<h3>Datos Sensibles — criticidad por pilar CIA (Alta / Media / Baja)</h3>
+<table>
+  <thead>
+    <tr><th>Dato</th><th>Sistema</th><th class="cia">C</th><th class="cia">I</th><th class="cia">D</th><th>Justificación</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>Credenciales y tokens SAML/sesión</b></td><td>Ambos</td><td class="ca">Alta</td><td class="ca">Alta</td><td class="ca">Alta</td><td>Su exposición compromete la autenticación; su alteración permite suplantación; su indisponibilidad bloquea el acceso de todos los actores</td></tr>
+    <tr><td><b>Notas y actas académicas</b></td><td>Guaraní</td><td class="ca">Alta</td><td class="ca">Alta</td><td class="cm">Media</td><td>Datos privados del alumno; modificación con consecuencias legales; indisponibilidad transitoria tolerable</td></tr>
+    <tr><td><b>Calificaciones en Campus</b></td><td>Campus</td><td class="ca">Alta</td><td class="ca">Alta</td><td class="cm">Media</td><td>Privacidad del alumno; su alteración afecta la evaluación; la plataforma puede operar temporalmente sin ellas</td></tr>
+    <tr><td><b>Entregas y exámenes</b></td><td>Campus</td><td class="ca">Alta</td><td class="ca">Alta</td><td class="cb">Baja</td><td>Propiedad intelectual; su filtración compromete la evaluación; indisponibilidad fuera del período de entrega no es crítica</td></tr>
+    <tr><td><b>Datos personales (DNI, domicilio, mail)</b></td><td>Ambos</td><td class="ca">Alta</td><td class="cm">Media</td><td class="cb">Baja</td><td>Regulados por Ley 25.326; su exposición viola la privacidad; modificaciones puntuales son detectables</td></tr>
+    <tr><td><b>Historial académico completo</b></td><td>Guaraní</td><td class="ca">Alta</td><td class="ca">Alta</td><td class="cb">Baja</td><td>Trayecto formativo del alumno; la alteración tiene consecuencias legales; la consulta no es permanente</td></tr>
+    <tr><td><b>Credenciales de base de datos</b></td><td>Ambos</td><td class="ca">Alta</td><td class="ca">Alta</td><td class="ca">Alta</td><td>Su exposición da acceso total al sistema; su corrupción destruye datos; su indisponibilidad detiene toda la aplicación</td></tr>
+    <tr><td><b>Materiales docentes</b></td><td>Campus</td><td class="cm">Media</td><td class="cm">Media</td><td class="cm">Media</td><td>Propiedad intelectual; alteraciones desinforman a alumnos; su indisponibilidad afecta la cursada activa</td></tr>
+    <tr><td><b>Registros de actividad (logs)</b></td><td>Ambos</td><td class="cm">Media</td><td class="ca">Alta</td><td class="cm">Media</td><td>Su alteración destruye la trazabilidad de auditoría; su pérdida impide investigar incidentes</td></tr>
+  </tbody>
+</table>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>2. Estimación del DFD (Diagrama de Flujo de Datos)</h2>
+
+<h3>DFD — SIU-Guaraní</h3>
+<img src="diagrams/dfd-guarani.png" alt="DFD SIU-Guaraní"
+  style="width:100%;max-height:260px;object-fit:contain;border:1px solid #d1d9e0;border-radius:4px;margin-bottom:10px;background:#fafafa;" />
+
+<h3>DFD — Campus Virtual (Moodle)</h3>
+<img src="diagrams/dfd-campus.png" alt="DFD Campus Virtual Moodle"
+  style="width:100%;max-height:260px;object-fit:contain;border:1px solid #d1d9e0;border-radius:4px;margin-bottom:10px;background:#fafafa;" />
+
+<h3>Fronteras de Confianza (ambos sistemas)</h3>
+<table>
+  <thead><tr><th>Frontera</th><th>Descripción</th></tr></thead>
+  <tbody>
+    <tr><td><b>Internet → Servidor Web</b></td><td>Zona más expuesta; tráfico de usuarios sin autenticar</td></tr>
+    <tr><td><b>App → Base de Datos</b></td><td>Red interna; solo la app debería tener acceso directo</td></tr>
+    <tr><td><b>Sistema → IdP (Araí / IdEx)</b></td><td>Delegación de autenticación a sistema externo de confianza</td></tr>
+    <tr><td><b>Guaraní → Moodle</b></td><td>Integración entre sistemas institucionales para inscripciones</td></tr>
+    <tr><td><b>Guaraní → Sistemas externos</b></td><td>Renaper, SICer, BIOMA — integraciones con terceros</td></tr>
+  </tbody>
+</table>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>3. Identificación de Amenazas con STRIDE</h2>
+
+<h3>SIU-Guaraní</h3>
+<table class="stride-table">
+  <thead>
+    <tr><th>Elemento</th><th>S — Spoofing</th><th>T — Tampering</th><th>R — Repudiation</th><th>I — Info Disclosure</th><th>D — DoS</th><th>E — Elev. Privilege</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Alumno / Docente</td>
+      <td>Robo de sesión o credenciales para suplantar al usuario</td>
+      <td>—</td>
+      <td>Alumno niega haber realizado una inscripción o acción en el sistema</td>
+      <td>—</td><td>—</td><td>—</td>
+    </tr>
+    <tr>
+      <td>Flujo HTTPS</td>
+      <td>Certificado SSL falso (MitM): atacante se hace pasar por el servidor ante el usuario</td>
+      <td>MitM modifica datos en tránsito si TLS no está bien configurado</td>
+      <td>—</td>
+      <td>Interceptación de credenciales o datos sin cifrado end-to-end</td>
+      <td>Saturación de requests en inscripciones</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>App Guaraní (PHP)</td>
+      <td>Token SAML falsificado permite ingresar como otro usuario</td>
+      <td>Inyección SQL para modificar notas directamente</td>
+      <td>Operaciones críticas sin registro de auditoría</td>
+      <td>IDOR: alumno ve notas de otro por falla en la autorización</td>
+      <td>Colapso de la app por alta demanda simultánea</td>
+      <td>Alumno accede a funciones de bedel manipulando parámetros de la URL</td>
+    </tr>
+    <tr>
+      <td>API REST Guaraní</td>
+      <td>—</td>
+      <td>Requests maliciosos modifican datos de otros usuarios</td>
+      <td>—</td>
+      <td>Endpoints sin autenticación exponen datos sensibles</td>
+      <td>—</td>
+      <td>Cambio de ID en URL accede a recursos ajenos (IDOR)</td>
+    </tr>
+    <tr>
+      <td>PostgreSQL</td>
+      <td>—</td>
+      <td>Modificación directa de la BD o eliminación masiva de registros (DROP / DELETE sin restricciones)</td>
+      <td>—</td>
+      <td>Dump completo expone notas y datos de toda la comunidad</td>
+      <td>Queries costosas saturan la base de datos</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Araí IdP</td>
+      <td>Assertion SAML falsificada si no se valida la firma</td>
+      <td>Token manipulado en tránsito</td>
+      <td>—</td><td>—</td>
+      <td>Caída del IdP bloquea toda autenticación en Guaraní</td>
+      <td>—</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Campus Virtual (Moodle)</h3>
+<table class="stride-table">
+  <thead>
+    <tr><th>Elemento</th><th>S — Spoofing</th><th>T — Tampering</th><th>R — Repudiation</th><th>I — Info Disclosure</th><th>D — DoS</th><th>E — Elev. Privilege</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Alumno / Docente</td>
+      <td>Robo de credenciales para acceder como el alumno</td>
+      <td>—</td>
+      <td>Alumno niega entrega; docente niega modificar nota</td>
+      <td>—</td><td>—</td><td>—</td>
+    </tr>
+    <tr>
+      <td>Flujo HTTPS</td>
+      <td>Certificado SSL falso (MitM): atacante se hace pasar por el servidor ante el usuario</td>
+      <td>Modificación de datos en tránsito si TLS mal configurado</td>
+      <td>—</td>
+      <td>Interceptación de entregas o exámenes</td>
+      <td>Saturación en fechas de parciales y entregas</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>App Moodle (PHP)</td>
+      <td>Robo de sesión vía cookie robada</td>
+      <td>Plugin malicioso instalado por el administrador modifica calificaciones</td>
+      <td>Acciones de docentes sin registro de auditoría</td>
+      <td>Alumno accede a materiales de cursos sin estar inscripto</td>
+      <td>Plataforma cae en fechas de parciales</td>
+      <td>Alumno obtiene rol de docente por mala configuración de roles</td>
+    </tr>
+    <tr>
+      <td>moodledata (archivos)</td>
+      <td>—</td>
+      <td>Modificación de archivos de entrega si el servidor no está protegido</td>
+      <td>—</td>
+      <td>Acceso directo si la carpeta está dentro del webroot</td>
+      <td>Disco lleno por entregas masivas sin límite de tamaño</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>PostgreSQL / MySQL</td>
+      <td>—</td>
+      <td>Modificación directa de calificaciones o eliminación masiva de registros</td>
+      <td>—</td>
+      <td>Dump expone datos de todos los usuarios</td>
+      <td>Queries pesadas en alta concurrencia</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>SIU-Guaraní (externo)</td>
+      <td>Inscripción falsificada para acceder a un curso</td>
+      <td>Manipulación de datos en el flujo Guaraní → Moodle</td>
+      <td>—</td>
+      <td>Integración expone datos académicos sin cifrar</td>
+      <td>—</td><td>—</td>
+    </tr>
+    <tr>
+      <td>IdEx / IdP (externo)</td>
+      <td>Assertion SAML falsificada para entrar como otro usuario</td>
+      <td>—</td><td>—</td><td>—</td>
+      <td>Caída del IdP bloquea autenticación en todo el Campus</td>
+      <td>—</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>4. Evaluación de Amenazas</h2>
+
+<div class="amenazas-grid">
+  <div class="amenaza-block">
+    <h3>Amenaza 1 — Inyección SQL en Guaraní (PHP)</h3>
+    <p><b>Vulnerabilidad:</b> La app PHP construye queries SQL concatenando el input del usuario sin prepared statements ni ORM.</p>
+    <p><b>Activo comprometido:</b> PostgreSQL completa — notas, legajos, datos personales, credenciales.</p>
+    <p><b>Impacto:</b> Modificación arbitraria de notas, robo masivo de datos, eliminación de registros. Impacto potencialmente irreversible.</p>
+  </div>
+  <div class="amenaza-block">
+    <h3>Amenaza 2 — DoS en períodos de alta demanda</h3>
+    <p><b>Vulnerabilidad:</b> Ambos sistemas operan sin escalabilidad horizontal, rate limiting ni CDN. En Guaraní ocurre en inscripciones; en Moodle, en parciales.</p>
+    <p><b>Activo comprometido:</b> Disponibilidad completa de ambas plataformas en momentos de mayor necesidad.</p>
+    <p><b>Impacto:</b> Miles de alumnos imposibilitados de inscribirse o rendir. Ocurre en la práctica todos los cuatrimestres.</p>
+  </div>
+  <div class="amenaza-block">
+    <h3>Amenaza 3 — Acceso a exámenes sin inscripción (Moodle)</h3>
+    <p><b>Vulnerabilidad:</b> Moodle mal configurado en permisos permite que un alumno acceda a recursos de cursos en los que no está inscripto.</p>
+    <p><b>Activo comprometido:</b> Materiales docentes, exámenes, entregas de otros alumnos.</p>
+    <p><b>Impacto:</b> Filtración de exámenes antes de la evaluación, copia de trabajos, compromiso de la integridad académica.</p>
+  </div>
+  <div class="amenaza-block">
+    <h3>Amenaza 4 — Elevation of Privilege (IDOR / roles)</h3>
+    <p><b>Vulnerabilidad:</b> En Guaraní, la app verifica autenticación pero no autorización por recurso (IDOR). En Moodle, la complejidad de roles facilita asignaciones incorrectas.</p>
+    <p><b>Activo comprometido:</b> Datos ajenos, funciones administrativas, calificaciones.</p>
+    <p><b>Impacto:</b> Un alumno accede a datos de otro o a funciones de bedel/docente; en Moodle puede modificar sus propias calificaciones.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>5. Evaluación de Riesgo con DREAD</h2>
+
+<div class="dread-wrap">
+  <div class="dread-block">
+    <h3>DREAD — Inyección SQL en Guaraní</h3>
+    <table>
+      <thead><tr><th>Criterio</th><th style="width:50px;text-align:center;">Punt.</th><th>Justificación</th></tr></thead>
+      <tbody>
+        <tr><td><b>D</b> — Damage</td><td style="text-align:center;">9</td><td>Permite modificar, robar o destruir toda la BD académica</td></tr>
+        <tr><td><b>R</b> — Reproducibility</td><td style="text-align:center;">7</td><td>Con herramientas automatizadas (SQLMap) es fácilmente repetible</td></tr>
+        <tr><td><b>E</b> — Exploitability</td><td style="text-align:center;">8</td><td>Difícil de mitigar si está extendido en el código PHP</td></tr>
+        <tr><td><b>A</b> — Affected Users</td><td style="text-align:center;">10</td><td>Afecta a todos los alumnos, docentes y administradores</td></tr>
+        <tr><td><b>D</b> — Discoverability</td><td style="text-align:center;">6</td><td>Requiere análisis pero es una vulnerabilidad bien conocida</td></tr>
+      </tbody>
+    </table>
+    <span class="dread-result">Riesgo = 40 / 5 = 8.0 — ALTO</span>
+  </div>
+  <div class="dread-block">
+    <h3>DREAD — Acceso a exámenes sin inscripción (Moodle)</h3>
+    <table>
+      <thead><tr><th>Criterio</th><th style="width:50px;text-align:center;">Punt.</th><th>Justificación</th></tr></thead>
+      <tbody>
+        <tr><td><b>D</b> — Damage</td><td style="text-align:center;">6</td><td>Filtración de exámenes compromete la integridad académica</td></tr>
+        <tr><td><b>R</b> — Reproducibility</td><td style="text-align:center;">6</td><td>Repetible en cualquier curso mal configurado</td></tr>
+        <tr><td><b>E</b> — Exploitability</td><td style="text-align:center;">6</td><td>Requiere conocer Moodle pero sin conocimientos avanzados</td></tr>
+        <tr><td><b>A</b> — Affected Users</td><td style="text-align:center;">4</td><td>Afecta a alumnos y docentes de los cursos involucrados</td></tr>
+        <tr><td><b>D</b> — Discoverability</td><td style="text-align:center;">7</td><td>Un alumno curioso explorando URLs puede encontrarlo</td></tr>
+      </tbody>
+    </table>
+    <span class="dread-result">Riesgo = 29 / 5 = 5.8 — MEDIO</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>6. Propuesta de Contramedidas</h2>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+<div>
+<h3>SIU-Guaraní</h3>
+<table>
+  <thead><tr><th>Amenaza</th><th>Contramedida</th><th>Tipo</th></tr></thead>
+  <tbody>
+    <tr><td><b>Inyección SQL</b></td><td>Prepared statements u ORM en toda la capa PHP; nunca concatenar input del usuario en queries</td><td>Código</td></tr>
+    <tr><td><b>DoS en inscripciones</b></td><td>Rate limiting por IP/usuario, cola de requests, escalabilidad horizontal con balanceador de carga</td><td>Arquitectura</td></tr>
+    <tr><td><b>IDOR / Elev. Privilege</b></td><td>Verificar en cada endpoint que el recurso pertenece al usuario autenticado; RBAC centralizado</td><td>Código</td></tr>
+    <tr><td><b>Token SAML falsificado</b></td><td>Validar firma, emisor y expiración de toda assertion SAML; rotación de sesiones; HTTPS obligatorio</td><td>Configuración</td></tr>
+    <tr><td><b>Acceso directo a BD</b></td><td>Red interna segmentada; solo la app puede conectarse a PostgreSQL; usuario de BD con mínimos privilegios</td><td>Arquitectura</td></tr>
+    <tr><td><b>Repudio / sin logs</b></td><td>Log de operaciones sensibles con timestamp, usuario e IP; logs en sistema separado de solo escritura</td><td>Código</td></tr>
+    <tr><td><b>Caída de Araí IdP</b></td><td>Circuit breaker que detecta la indisponibilidad del IdP y activa un fallback de autenticación local</td><td>Arquitectura</td></tr>
+  </tbody>
+</table>
+</div>
+<div>
+<h3>Campus Virtual (Moodle)</h3>
+<table>
+  <thead><tr><th>Amenaza</th><th>Contramedida</th><th>Tipo</th></tr></thead>
+  <tbody>
+    <tr><td><b>Acceso sin inscripción</b></td><td>Configuración correcta de permisos por curso; auditoría periódica de roles; tests de acceso automatizados</td><td>Configuración</td></tr>
+    <tr><td><b>DoS en parciales</b></td><td>Balanceo de carga, caché de contenido estático, límite de sesiones concurrentes, CDN</td><td>Arquitectura</td></tr>
+    <tr><td><b>Elev. Privilege por roles</b></td><td>Revisión periódica de roles; principio de mínimo privilegio; alertas ante cambios de rol inesperados</td><td>Configuración</td></tr>
+    <tr><td><b>Acceso a moodledata</b></td><td>Mover moodledata fuera del webroot; configurar Apache/Nginx para denegar acceso directo al directorio</td><td>Configuración</td></tr>
+    <tr><td><b>Robo de sesión</b></td><td>HTTPS obligatorio; cookies con flags <b>Secure</b> y <b>HttpOnly</b>; timeout de sesión activo</td><td>Configuración</td></tr>
+    <tr><td><b>Plugin malicioso</b></td><td>Proceso formal de revisión y aprobación antes de instalar cualquier plugin; lista blanca de plugins permitidos</td><td>Proceso</td></tr>
+    <tr><td><b>Integración Guaraní</b></td><td>TLS mutuo entre Moodle y Guaraní; validar y sanitizar todos los datos recibidos</td><td>Código</td></tr>
+    <tr><td><b>Repudio / sin logs</b></td><td>Logging completo de Moodle para acciones sensibles; proteger logs contra modificación</td><td>Configuración</td></tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</body>
+</html>
